@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block admin from search engines
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://jdmdirect.com/sitemap.xml
