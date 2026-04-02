@@ -124,8 +124,11 @@ export default async function VehicleDetailPage({ params }: PageProps) {
               { icon: <Settings className="w-4 h-4" />, label: 'Transmission', value: vehicle.transmission },
               { icon: <Fuel className="w-4 h-4" />, label: 'Drivetrain', value: vehicle.drivetrain },
               { icon: <Calendar className="w-4 h-4" />, label: 'Year', value: vehicle.year.toString() },
+              ...(vehicle.engineCode ? [{ icon: <Settings className="w-4 h-4" />, label: 'Engine', value: vehicle.engineCode }] : []),
+              ...(vehicle.horsepower ? [{ icon: <Gauge className="w-4 h-4" />, label: 'Power', value: `${vehicle.horsepower} PS` }] : []),
               { icon: <MapPin className="w-4 h-4" />, label: 'Location', value: vehicle.location },
               { icon: <FileText className="w-4 h-4" />, label: 'Stock #', value: vehicle.stockNumber },
+              ...(vehicle.chassisNumber ? [{ icon: <FileText className="w-4 h-4" />, label: 'Chassis #', value: vehicle.chassisNumber }] : []),
             ].map((spec) => (
               <div key={spec.label} className="bg-neutral-900 rounded-xl p-3 flex items-center gap-3">
                 <span className="text-neutral-500">{spec.icon}</span>
@@ -199,6 +202,40 @@ export default async function VehicleDetailPage({ params }: PageProps) {
                 {f}
               </Badge>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Technical Specifications */}
+      {(vehicle.engineCode || vehicle.horsepower || vehicle.torque || vehicle.chassisNumber || vehicle.doors || vehicle.seats) && (
+        <div className="mt-14">
+          <h2 className="text-2xl font-black mb-6">Technical Specifications</h2>
+          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden">
+            <table className="w-full text-sm">
+              <tbody>
+                {[
+                  vehicle.engineCode && { label: 'Engine Code', value: vehicle.engineCode },
+                  vehicle.engineDisplacement && { label: 'Displacement', value: `${(vehicle.engineDisplacement / 1000).toFixed(1)}L (${vehicle.engineDisplacement}cc)` },
+                  vehicle.horsepower && { label: 'Power Output', value: `${vehicle.horsepower} PS` },
+                  vehicle.torque && { label: 'Torque', value: `${vehicle.torque} Nm` },
+                  { label: 'Drivetrain', value: vehicle.drivetrain },
+                  { label: 'Transmission', value: vehicle.transmission },
+                  vehicle.doors && { label: 'Doors', value: vehicle.doors.toString() },
+                  vehicle.seats && { label: 'Seats', value: vehicle.seats.toString() },
+                  vehicle.color && { label: 'Exterior Color', value: vehicle.color },
+                  vehicle.chassisNumber && { label: 'Chassis Number', value: vehicle.chassisNumber },
+                  { label: 'Stock Number', value: vehicle.stockNumber },
+                ].filter(Boolean).map((row, i) => {
+                  const r = row as { label: string; value: string }
+                  return (
+                    <tr key={r.label} className={i % 2 === 0 ? 'bg-neutral-900' : 'bg-neutral-800/40'}>
+                      <td className="px-6 py-3 text-neutral-400 w-1/3">{r.label}</td>
+                      <td className="px-6 py-3 font-medium">{r.value}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
       )}

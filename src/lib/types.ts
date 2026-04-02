@@ -19,6 +19,12 @@ export interface Vehicle {
   images: string[]
   description?: string
   features: string[]
+  chassisNumber?: string   // e.g. "JZA80-0012345"
+  engineCode?: string      // e.g. "2JZ-GTE"
+  horsepower?: number      // PS (Japanese spec)
+  torque?: number          // Nm
+  doors?: number
+  seats?: number
   location: string // Japanese port
   availableDate?: string
   stockNumber: string
