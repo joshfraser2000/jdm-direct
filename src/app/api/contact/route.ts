@@ -7,6 +7,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
 
+export const dynamic = 'force-dynamic'
+
 const VALID_SUBJECTS = new Set([
   'vehicle_request',
   'order_status',

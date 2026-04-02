@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getVehicleById } from '@/lib/vehicles-api'
+
+export const dynamic = 'force-dynamic'
 import { createCheckoutSession } from '@/lib/stripe'
 import { ShippingAddress } from '@/lib/types'
 
