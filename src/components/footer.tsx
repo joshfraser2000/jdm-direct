@@ -3,28 +3,34 @@ import { FOOTER_SHOP_LINKS, FOOTER_INFO_LINKS } from '@/lib/nav-config'
 
 export function Footer() {
   return (
-    <footer className="bg-black border-t border-neutral-800 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer style={{ background: '#010101', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-red-500 font-black text-2xl">JDM</span>
-              <span className="text-white font-bold text-lg">DIRECT</span>
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-1 mb-5">
+              <span className="rpm-heading font-black text-2xl" style={{ color: '#d31f26' }}>JDM</span>
+              <span className="rpm-heading font-black text-2xl tracking-widest" style={{ color: '#fefefe' }}>DIRECT</span>
             </div>
-            <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
+            <p className="font-light leading-relaxed max-w-xs" style={{ color: '#aaa', fontSize: '0.85rem' }}>
               Your direct source for authentic Japanese Domestic Market vehicles, imported legally and
               delivered to your door. All vehicles comply with the US 25-year import rule.
             </p>
           </div>
 
-          {/* Shop links */}
+          {/* Shop */}
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Shop</h4>
+            <h4 className="rpm-heading font-normal tracking-[0.25em] mb-5" style={{ color: '#fefefe', fontSize: '0.75rem' }}>
+              Shop
+            </h4>
             <ul className="space-y-3">
               {FOOTER_SHOP_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-neutral-400 hover:text-white text-sm transition-colors">
+                  <Link
+                    href={link.href}
+                    className="font-light transition-colors hover:text-[#fefefe]"
+                    style={{ color: 'rgb(144,144,144)', fontSize: '0.85rem' }}
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -32,13 +38,19 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Info links */}
+          {/* Info */}
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Info</h4>
+            <h4 className="rpm-heading font-normal tracking-[0.25em] mb-5" style={{ color: '#fefefe', fontSize: '0.75rem' }}>
+              Info
+            </h4>
             <ul className="space-y-3">
               {FOOTER_INFO_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-neutral-400 hover:text-white text-sm transition-colors">
+                  <Link
+                    href={link.href}
+                    className="font-light transition-colors hover:text-[#fefefe]"
+                    style={{ color: 'rgb(144,144,144)', fontSize: '0.85rem' }}
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -47,11 +59,14 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-neutral-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-500 text-xs">
+        <div
+          className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        >
+          <p className="font-light" style={{ color: '#555', fontSize: '0.75rem' }}>
             © {new Date().getFullYear()} JDM Direct. All vehicles imported under US 25-year import exemption (49 CFR 591.5).
           </p>
-          <p className="text-neutral-600 text-xs">
+          <p className="font-light" style={{ color: '#555', fontSize: '0.75rem' }}>
             All prices in USD. Import duties and state taxes may apply.
           </p>
         </div>

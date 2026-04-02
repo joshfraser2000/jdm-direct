@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Menu } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/nav-config'
@@ -11,13 +10,18 @@ export function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-800 bg-black/95 backdrop-blur">
+    <header
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        background: 'linear-gradient(to bottom, #010101 0%, #010101 40%, transparent 100%)',
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-red-500 font-black text-2xl tracking-tight">JDM</span>
-            <span className="text-white font-bold text-lg tracking-wide">DIRECT</span>
+          <Link href="/" className="flex items-center gap-1 shrink-0">
+            <span className="text-[#d31f26] font-black text-3xl tracking-tight rpm-heading">JDM</span>
+            <span className="text-[#fefefe] font-black text-3xl tracking-widest rpm-heading">DIRECT</span>
           </Link>
 
           {/* Desktop nav */}
@@ -26,7 +30,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-neutral-400 hover:text-white transition-colors font-medium"
+                className="text-sm text-[#fefefe] hover:bg-[rgba(119,119,119,0.8)] px-3 py-1.5 transition-colors rpm-heading font-light tracking-widest"
               >
                 {link.label}
               </Link>
@@ -34,35 +38,35 @@ export function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center">
             <Link href="/vehicles">
-              <Button className="bg-red-600 hover:bg-red-700 text-white font-semibold">
+              <button className="btn-rpm px-5 py-2 text-sm">
                 Shop Now
-              </Button>
+              </button>
             </Link>
           </div>
 
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-neutral-800">
-              <Menu className="w-5 h-5" />
+            <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-[#fefefe] hover:bg-[rgba(119,119,119,0.4)]">
+              <Menu className="w-6 h-6" />
             </SheetTrigger>
-            <SheetContent side="right" className="bg-black border-neutral-800 text-white">
-              <div className="flex flex-col gap-6 mt-8">
+            <SheetContent side="right" className="border-[rgba(255,255,255,0.08)]" style={{ background: '#010101' }}>
+              <div className="flex flex-col gap-6 mt-10">
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-lg font-medium text-neutral-300 hover:text-white"
+                    className="text-base font-light text-[#fefefe] tracking-widest rpm-heading hover:text-[#d31f26] transition-colors"
                     onClick={() => setOpen(false)}
                   >
                     {link.label}
                   </Link>
                 ))}
                 <Link href="/vehicles" onClick={() => setOpen(false)}>
-                  <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                  <button className="btn-rpm w-full px-5 py-2.5 text-sm mt-4">
                     Shop Now
-                  </Button>
+                  </button>
                 </Link>
               </div>
             </SheetContent>

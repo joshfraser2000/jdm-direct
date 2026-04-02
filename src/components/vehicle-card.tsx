@@ -1,123 +1,146 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import { Vehicle } from '@/lib/types'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Gauge, Fuel, Settings, Calendar, Star } from 'lucide-react'
 
 interface VehicleCardProps {
   vehicle: Vehicle
   comingSoon?: boolean
 }
 
+function CardImage({ src, alt }: { src: string; alt: string }) {
+  const [failed, setFailed] = useState(false)
+  if (failed) {
+    return (
+      <div className="w-full h-full flex items-center justify-center" style={{ background: '#111', color: '#555', fontSize: '0.8rem' }}>
+        <span className="rpm-heading tracking-widest">PHOTO COMING SOON</span>
+      </div>
+    )
+  }
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={alt} className="w-full h-full object-cover" onError={() => setFailed(true)} />
+  )
+}
+
 export function VehicleCard({ vehicle, comingSoon = false }: VehicleCardProps) {
   const hasImage = vehicle.images && vehicle.images.length > 0
 
-  return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-200 group">
+  const cardInner = (
+    <div className="vehicle-card-rpm rounded-sm relative" style={{ position: 'relative' }}>
       {/* Image */}
-      <div className="relative aspect-[16/10] bg-neutral-900 overflow-hidden">
+      <div className="card-img-wrap" style={{ aspectRatio: '16/10', background: '#111' }}>
         {hasImage ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <CardImage
             src={vehicle.images[0]}
             alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement
-              target.style.display = 'none'
-            }}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-neutral-600">
-            <div className="text-center">
-              <div className="text-4xl mb-2">🚗</div>
-              <div className="text-sm">Photo Coming Soon</div>
-            </div>
+          <div className="w-full h-full flex items-center justify-center" style={{ color: '#555' }}>
+            <span className="rpm-heading tracking-widest text-xs">PHOTO COMING SOON</span>
           </div>
         )}
 
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
-          {vehicle.auctionGrade && (
-            <Badge className="bg-yellow-500 text-black font-bold text-xs">
-              <Star className="w-3 h-3 mr-1" />
-              Grade {vehicle.auctionGrade}
-            </Badge>
-          )}
-          {comingSoon && (
-            <Badge variant="secondary" className="bg-blue-600 text-white text-xs">
-              Eligible {vehicle.eligibilityDate}
-            </Badge>
-          )}
-        </div>
+        {/* Hover overlay with CTA */}
+        {!comingSoon && (
+          <div className="card-overlay">
+            <span className="btn-rpm px-6 py-2 text-xs">View Details</span>
+          </div>
+        )}
 
+        {/* Coming soon overlay */}
         {comingSoon && (
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <div className="text-white text-center">
-              <div className="text-lg font-bold">Coming Soon</div>
-              <div className="text-sm opacity-80">Eligible in {vehicle.eligibilityDate}</div>
-            </div>
+          <div
+            className="absolute inset-0 flex flex-col items-center justify-center"
+            style={{ background: 'rgba(1,1,1,0.65)' }}
+          >
+            <span className="rpm-heading font-bold tracking-widest" style={{ color: '#fefefe', fontSize: '0.9rem' }}>COMING SOON</span>
+            <span className="rpm-heading font-light tracking-widest mt-1" style={{ color: '#aaa', fontSize: '0.7rem' }}>
+              ELIGIBLE {vehicle.eligibilityDate}
+            </span>
+          </div>
+        )}
+
+        {/* Auction grade badge */}
+        {vehicle.auctionGrade && (
+          <div
+            className="absolute top-2 left-2 rpm-heading font-bold text-xs px-2 py-0.5"
+            style={{ background: '#d31f26', color: '#fefefe', letterSpacing: '0.05em' }}
+          >
+            GRADE {vehicle.auctionGrade}
           </div>
         )}
       </div>
 
-      <CardContent className="p-4">
-        {/* Title */}
-        <div className="mb-3">
-          <h3 className="font-bold text-lg leading-tight">
-            {vehicle.year} {vehicle.make} {vehicle.model}
-            {vehicle.grade && <span className="text-neutral-500 font-normal"> {vehicle.grade}</span>}
-          </h3>
-          <p className="text-sm text-neutral-500">Stock #{vehicle.stockNumber}</p>
-        </div>
+      {/* Info */}
+      <div className="p-4">
+        <h3
+          className="rpm-heading font-medium tracking-widest leading-tight mb-1"
+          style={{ color: '#fefefe', fontSize: '0.85rem' }}
+        >
+          {vehicle.year} {vehicle.make} {vehicle.model}
+          {vehicle.grade && (
+            <span style={{ color: '#777', fontWeight: 300 }}> {vehicle.grade}</span>
+          )}
+        </h3>
 
-        {/* Specs row */}
-        <div className="grid grid-cols-2 gap-2 mb-4 text-sm text-neutral-600">
-          <div className="flex items-center gap-1.5">
-            <Gauge className="w-3.5 h-3.5 text-neutral-400" />
-            {vehicle.mileage.toLocaleString()} km
+        <p className="rpm-heading font-light tracking-widest mb-3" style={{ color: '#d31f26', fontSize: '0.7rem' }}>
+          JDM Direct
+        </p>
+
+        {/* Specs */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1 mb-4" style={{ fontSize: '0.72rem' }}>
+          <div>
+            <dt className="rpm-heading font-light tracking-widest" style={{ color: '#777', fontSize: '0.6rem' }}>MILEAGE</dt>
+            <dd style={{ color: '#aaa' }}>{vehicle.mileage.toLocaleString()} km</dd>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Settings className="w-3.5 h-3.5 text-neutral-400" />
-            {vehicle.transmission}
+          <div>
+            <dt className="rpm-heading font-light tracking-widest" style={{ color: '#777', fontSize: '0.6rem' }}>TRANS</dt>
+            <dd style={{ color: '#aaa' }}>{vehicle.transmission}</dd>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Fuel className="w-3.5 h-3.5 text-neutral-400" />
-            {vehicle.drivetrain}
+          <div>
+            <dt className="rpm-heading font-light tracking-widest" style={{ color: '#777', fontSize: '0.6rem' }}>DRIVE</dt>
+            <dd style={{ color: '#aaa' }}>{vehicle.drivetrain}</dd>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-neutral-400" />
-            {vehicle.location.split(',')[0]}
+          <div>
+            <dt className="rpm-heading font-light tracking-widest" style={{ color: '#777', fontSize: '0.6rem' }}>LOCATION</dt>
+            <dd style={{ color: '#aaa' }}>{vehicle.location.split(',')[0]}</dd>
           </div>
         </div>
 
         {/* Price */}
-        <div className="mb-4">
-          <div className="text-2xl font-bold">${vehicle.price.toLocaleString()}</div>
-          <div className="text-xs text-neutral-500">
-            + ${vehicle.shippingEstimate.toLocaleString()} shipping ·{' '}
-            <span className="font-medium text-neutral-700">
+        <div className="flex items-end justify-between">
+          <div>
+            <div
+              className="rpm-heading font-medium tracking-widest"
+              style={{ color: '#aaa', fontSize: '1.3rem' }}
+            >
+              ${vehicle.price.toLocaleString()}
+            </div>
+            <div style={{ color: '#555', fontSize: '0.65rem' }}>
               ${vehicle.totalLandedCost.toLocaleString()} total landed
-            </span>
+            </div>
           </div>
-        </div>
 
-        {/* CTA */}
-        {comingSoon ? (
-          <Button variant="outline" className="w-full" disabled>
-            Not Yet Eligible for Import
-          </Button>
-        ) : (
-          <Link href={`/vehicles/${vehicle.id}`}>
-            <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
-              View Details & Purchase
-            </Button>
-          </Link>
-        )}
-      </CardContent>
-    </Card>
+          {comingSoon && (
+            <span
+              className="rpm-heading font-light tracking-widest text-xs px-3 py-1"
+              style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#777', borderRadius: '0.35rem' }}
+            >
+              {vehicle.eligibilityDate}
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+
+  if (comingSoon) return cardInner
+
+  return (
+    <Link href={`/vehicles/${vehicle.id}`} className="block">
+      {cardInner}
+    </Link>
   )
 }
