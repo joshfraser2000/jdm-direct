@@ -24,8 +24,7 @@ const RAW_VEHICLES = [
     price: 28500,
     shippingEstimate: 1800,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Toyota_Supra_MKIV_front_angle.jpg/1280px-Toyota_Supra_MKIV_front_angle.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/1993-1998_Toyota_Supra_RZ_--_09-28-2011.jpg/1280px-1993-1998_Toyota_Supra_RZ_--_09-28-2011.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/1994_Toyota_Supra_Sport_Roof_in_Red%2C_front_left.jpg/1280px-1994_Toyota_Supra_Sport_Roof_in_Red%2C_front_left.jpg',
     ],
     features: ['Turbo', 'HKS Exhaust', 'Recaro Seats', 'TEMS Suspension', 'Factory AC', 'Power Windows'],
     location: 'Osaka, Japan',
@@ -51,7 +50,7 @@ const RAW_VEHICLES = [
     price: 52000,
     shippingEstimate: 1800,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/1999_Nissan_Skyline_R34_GT-R_V-spec%2C_front_8.3.19.jpg/1280px-1999_Nissan_Skyline_R34_GT-R_V-spec%2C_front_8.3.19.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Nissan_Skyline_R34_GT-R_N%C3%BCr_001.jpg/1280px-Nissan_Skyline_R34_GT-R_N%C3%BCr_001.jpg',
     ],
     features: ['ATTESA E-TS Pro', 'HICAS', 'Brembo Brakes', 'Carbon Spoiler', 'Nismo Wheels', 'Boost Controller'],
     location: 'Tokyo, Japan',
@@ -77,7 +76,7 @@ const RAW_VEHICLES = [
     price: 89000,
     shippingEstimate: 1800,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Honda_NSX_NA1_orange_-_Goodwood_Festival_of_Speed_2014_%2814399731087%29.jpg/1280px-Honda_NSX_NA1_orange_-_Goodwood_Festival_of_Speed_2014_%2814399731087%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/AcuraNSX-05-cropped.jpg/1280px-AcuraNSX-05-cropped.jpg',
     ],
     features: ['C32B VTEC Engine', 'Close-Ratio Gearbox', 'Air Conditioning', 'Power Steering', 'Titanium Shift Knob'],
     location: 'Nagoya, Japan',
@@ -103,7 +102,7 @@ const RAW_VEHICLES = [
     price: 34000,
     shippingEstimate: 1800,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Mazda_RX-7_FD_-_front_%28cropped%29.jpg/1280px-Mazda_RX-7_FD_-_front_%28cropped%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/1994_Mazda_RX-7_R2_in_Vintage_Red%2C_front_left_%28Lime_Rock%29.jpg/1280px-1994_Mazda_RX-7_R2_in_Vintage_Red%2C_front_left_%28Lime_Rock%29.jpg',
     ],
     features: ['Sequential Twin Turbo', 'Torsen LSD', 'Sport Suspension', 'Sunroof', 'AC', 'Bose Audio'],
     location: 'Hiroshima, Japan',
@@ -129,7 +128,7 @@ const RAW_VEHICLES = [
     price: 18500,
     shippingEstimate: 1800,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Mitsubishi_Lancer_Evolution_VII_001.jpg/1280px-Mitsubishi_Lancer_Evolution_VII_001.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Mitsubishi_Lancer_Evolution_VII_GSR_in_Amethyst_Black%2C_front_right.jpg/1280px-Mitsubishi_Lancer_Evolution_VII_GSR_in_Amethyst_Black%2C_front_right.jpg',
     ],
     features: ['Active Center Differential', 'Brembo Brakes', 'MIVEC Engine', 'HKS Turbo', 'Rally Heritage'],
     location: 'Osaka, Japan',
@@ -155,7 +154,7 @@ const RAW_VEHICLES = [
     price: 22000,
     shippingEstimate: 1800,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Subaru_Impreza_WRX_STi_Version_VI_RA_-_GC8_%281999-2000%29.jpg/1280px-Subaru_Impreza_WRX_STi_Version_VI_RA_-_GC8_%281999-2000%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/1994-1996_Subaru_Impreza_WRX_Type_RA_STi.jpg/1280px-1994-1996_Subaru_Impreza_WRX_Type_RA_STi.jpg',
     ],
     features: ['EJ207 Engine', 'DCCD Diff', 'STI 6-Speed', 'Bilstein Suspension', 'BBS Wheels', 'Brembo Brakes'],
     location: 'Tokyo, Japan',
@@ -181,7 +180,7 @@ const RAW_VEHICLES = [
     price: 16500,
     shippingEstimate: 2200,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Toyota_Land_Cruiser_100_VX_Limited_G-Selection_%28J100%2C_first_generation%29%2C_front_8.4.19.jpg/1280px-Toyota_Land_Cruiser_100_VX_Limited_G-Selection_%28J100%2C_first_generation%29%2C_front_8.4.19.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Toyota_Land_Cruiser_--_03-21-2012_1.JPG/1280px-Toyota_Land_Cruiser_--_03-21-2012_1.JPG',
     ],
     features: ['KDSS Suspension', 'Diff Lock', 'Kinetic Dynamic Suspension', 'Leather Seats', 'Navigation', 'Third Row Seating'],
     location: 'Sapporo, Japan',
@@ -207,7 +206,7 @@ const RAW_VEHICLES = [
     price: 24000,
     shippingEstimate: 1800,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/2002_Honda_Integra_Type_R_%28DC5%29%2C_front_8.3.19.jpg/1280px-2002_Honda_Integra_Type_R_%28DC5%29%2C_front_8.3.19.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/2001_Honda_Integra_Type_R_BS_O24.jpg/1280px-2001_Honda_Integra_Type_R_BS_O24.jpg',
     ],
     features: ['K20A VTEC', 'LSD', 'Recaro Seats', 'Brembo Brakes', 'Sport Suspension', 'Carbon Interior Trim'],
     location: 'Tokyo, Japan',
